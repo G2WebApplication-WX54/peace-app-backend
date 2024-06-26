@@ -8,8 +8,13 @@ public class OrganizationAccount
     //be careful wit this 
     //Mayusculas??
     public string OrganizationName { get; private set; }
+    
+    // Location should be a value object
     public string Location { get; private set; }
+    
+    // Cellphone should have restriction to have 9 characters 
     public string Cellphone { get; private set; }
+    
     protected OrganizationAccount()
     {
         this.OrganizationName = string.Empty;
