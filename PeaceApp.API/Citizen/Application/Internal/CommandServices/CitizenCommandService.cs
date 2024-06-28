@@ -36,7 +36,7 @@ public class CitizenCommandService(ICitizenRepository citizenRepository, IUnitOf
 
         citizen.UpdateName(command.FirstName, command.LastName);
         citizen.UpdateEmail(command.Email);
-        citizen.UpdateAddress(command.Street, command.Number, command.City, command.PostalCode, command.Country);
+       //citizen.UpdateAddress(command.Street, command.Number, command.City, command.PostalCode, command.Country);
 
         try
         {

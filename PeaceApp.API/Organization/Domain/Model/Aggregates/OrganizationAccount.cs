@@ -7,20 +7,32 @@ public class OrganizationAccount
     public int Id { get; private set; }
     //be careful wit this 
     //Mayusculas??
-    public string OrganizationName { get; private set; }
-    public string Location { get; private set; }
-    public string Cellphone { get; private set; }
+    public string Name { get; private set; }
+    public string Email { get; private set; }
+    public string Password { get; private set; }
+    public string ContactNumber { get; private set; }
+    public string Address { get; private set; }
+    public string Description { get; private set; }
+    public string ProfileImage { get; private set; }
     protected OrganizationAccount()
     {
-        this.OrganizationName = string.Empty;
-        this.Location = string.Empty;
-        this.Cellphone = string.Empty;
+        this.Name = string.Empty;
+        this.Email = string.Empty;
+        this.Password = string.Empty;
+        this.ContactNumber = string.Empty;
+        this.Address = string.Empty;
+        this.Description = string.Empty;
+        this.ProfileImage = string.Empty;
     }
 
     public OrganizationAccount(CreateOrganizationAccountCommand command)
     {
-        this.OrganizationName = command.OrganizationName;
-        this.Location = command.Location;
-        this.Cellphone = command.Cellphone; 
+        this.Name = command.Name;
+        this.Email = command.Email;
+        this.Password = command.Password;
+        this.ContactNumber = command.ContactNumber;
+        this.Address = command.Address;
+        this.Description = command.Description;
+        this.ProfileImage = command.ProfileImage;
     }
 }

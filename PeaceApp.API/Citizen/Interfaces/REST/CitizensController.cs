@@ -42,6 +42,17 @@ public class CitizensController(ICitizenCommandService citizenCommandService, IC
         var citizenResource = CitizenResourceFromEntityAssembler.ToResourceFromEntity(citizen);
         return Ok(citizenResource);
     }
+    
+    [HttpGet("email/{email}")]
+    public async Task<IActionResult> GetCitizenByEmail(string email)
+    {
+        var getCitizenByEmailQuery = new GetCitizenByEmailQuery(new EmailAddress(email));
+        var citizen = await citizenQueryService.Handle(getCitizenByEmailQuery);
+        if (citizen == null) return NotFound();
+        var citizenResource = CitizenResourceFromEntityAssembler.ToResourceFromEntity(citizen);
+        return Ok(citizenResource);
+    }
+    
     [HttpPut("{citizenId:int}")]
     public async Task<IActionResult> UpdateCitizen(int citizenId, UpdateCitizenResource resource)
     {

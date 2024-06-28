@@ -16,7 +16,7 @@ public class CitizenRepository : BaseRepository<Domain.Model.Aggregates.Citizen>
     {
         // Compare the Address property of EmailAddress directly
         return Context.Set<Domain.Model.Aggregates.Citizen>()
-            .Where(p => p.Email.Address == email.Address)
+            .Where(p => p.Email.Email == email.Email)
             .FirstOrDefaultAsync();
     }
 

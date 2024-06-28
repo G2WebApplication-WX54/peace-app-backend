@@ -15,6 +15,12 @@ public class OrganizationAccountRepository : BaseRepository<OrganizationAccount>
     public async  Task<OrganizationAccount> FindByOrganizationNameAsync(string organizationName)
     {
         return await Context.Set<OrganizationAccount>()
-            .FirstOrDefaultAsync(f => f.OrganizationName == organizationName);
+            .FirstOrDefaultAsync(f => f.Name == organizationName);
+    }
+
+    public async Task<OrganizationAccount> FindByOrganizationEmailAsync(string organizationEmail)
+    {
+        return await Context.Set<OrganizationAccount>()
+            .FirstOrDefaultAsync(f => f.Email == organizationEmail);
     }
 }

@@ -29,7 +29,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<ReportManagement>().Property(f => f.Date).IsRequired().HasMaxLength(20);
         builder.Entity<ReportManagement>().Property(f => f.Time).IsRequired().HasMaxLength(20);
         builder.Entity<ReportManagement>().Property(f => f.District).IsRequired().HasMaxLength(20);
-        builder.Entity<ReportManagement>().Property(f => f.Location).IsRequired().HasMaxLength(20);
+        builder.Entity<ReportManagement>().Property(f => f.Location).IsRequired();
         builder.Entity<ReportManagement>().Property(f => f.Description).IsRequired().HasMaxLength(200);
         builder.Entity<ReportManagement>().Property(f => f.UrlEvidence).IsRequired().HasMaxLength(500);
         builder.Entity<ReportManagement>().Property(f => f.CitizenId).IsRequired();
@@ -38,9 +38,13 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<OrganizationAccount>().ToTable("OrganizationAccounts");
         builder.Entity<OrganizationAccount>().HasKey(f => f.Id);
         builder.Entity<OrganizationAccount>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<OrganizationAccount>().Property(f => f.OrganizationName).IsRequired();
-        builder.Entity<OrganizationAccount>().Property(f => f.Cellphone).IsRequired();
-        builder.Entity<OrganizationAccount>().Property(f => f.Location).IsRequired();
+        builder.Entity<OrganizationAccount>().Property(f => f.Name).IsRequired();
+        builder.Entity<OrganizationAccount>().Property(f => f.Email).IsRequired();
+        builder.Entity<OrganizationAccount>().Property(f => f.Password).IsRequired();
+        builder.Entity<OrganizationAccount>().Property(f => f.ContactNumber).IsRequired();
+        builder.Entity<OrganizationAccount>().Property(f => f.Address).IsRequired();
+        builder.Entity<OrganizationAccount>().Property(f => f.Description).IsRequired();
+        builder.Entity<OrganizationAccount>().Property(f => f.ProfileImage).IsRequired();
         
         //Communication BC
         builder.Entity<Notification>().ToTable("Notifications");
@@ -65,10 +69,14 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             e =>
             {
                 e.WithOwner().HasForeignKey("Id");
-                e.Property(a => a.Address).HasColumnName("EmailAddress");
+                e.Property(a => a.Email).HasColumnName("EmailAddress");
             });
-
-        builder.Entity<Citizen.Domain.Model.Aggregates.Citizen>().OwnsOne(c => c.Address,
+        builder.Entity<Citizen.Domain.Model.Aggregates.Citizen>().Property(c => c.Password).IsRequired();
+        builder.Entity<Citizen.Domain.Model.Aggregates.Citizen>().Property(c => c.Address).IsRequired().HasColumnName("Address");
+        builder.Entity<Citizen.Domain.Model.Aggregates.Citizen>().Property(c => c.District).IsRequired();
+        builder.Entity<Citizen.Domain.Model.Aggregates.Citizen>().Property(c => c.City).IsRequired();
+        builder.Entity<Citizen.Domain.Model.Aggregates.Citizen>().Property(c => c.ProfileImage).IsRequired();
+       /* builder.Entity<Citizen.Domain.Model.Aggregates.Citizen>().OwnsOne(c => c.Address,
             a =>
             {
                 a.WithOwner().HasForeignKey("Id");
@@ -77,7 +85,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
                 a.Property(s => s.City).HasColumnName("AddressCity");
                 a.Property(s => s.PostalCode).HasColumnName("AddressPostalCode");
                 a.Property(s => s.Country).HasColumnName("AddressCountry");
-            });
+            });*/
 
         builder.Entity<Citizen.Domain.Model.Aggregates.Citizen>()
             .HasMany(c => c.Reports)

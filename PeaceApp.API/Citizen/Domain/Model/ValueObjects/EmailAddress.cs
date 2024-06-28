@@ -1,15 +1,15 @@
 public record EmailAddress
 {
-    public string Address { get; private set; }
+    public string Email { get; private set; }
 
     public EmailAddress(string address)
     {
-        Address = address ?? throw new ArgumentNullException(nameof(address));
+        Email = address ?? throw new ArgumentNullException(nameof(address));
     }
 
     // Default constructor for EF Core
     public EmailAddress()
     {
-        Address = string.Empty;
+        Email = string.Empty;
     }
 }

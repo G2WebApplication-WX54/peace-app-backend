@@ -9,7 +9,7 @@ namespace PeaceApp.API.Citizen.Domain.Model.Queries
 
         public GetCitizenByEmailQuery(EmailAddress email)
         {
-            if (email == null || string.IsNullOrWhiteSpace(email.Address))
+            if (email == null || string.IsNullOrWhiteSpace(email.Email))
             {
                 throw new ArgumentNullException(nameof(email), "Email cannot be null or empty.");
             }

@@ -7,4 +7,5 @@ public interface IOrganizationAccountQueryService
 {
     //I can add more in the future
     Task<OrganizationAccount> Handle(GetOrganizationAccountByOrganizationNameQuery query);
+    Task<OrganizationAccount> Handle(GetOrganizationAccountByEmailQuery query);
 }

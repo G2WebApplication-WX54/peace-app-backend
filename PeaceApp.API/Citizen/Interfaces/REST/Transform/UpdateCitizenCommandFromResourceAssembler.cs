@@ -7,6 +7,7 @@ public static class UpdateCitizenCommandFromResourceAssembler
 {
     public static UpdateCitizenAccountCommand ToCommandFromResource(int id, UpdateCitizenResource resource)
     {
-        return new UpdateCitizenAccountCommand(id,resource.FirstName,resource.LastName,resource.Email,resource.Street,resource.Number,resource.City,resource.PostalCode,resource.Country);
+        return new UpdateCitizenAccountCommand(id,resource.FirstName,resource.LastName,resource.Email,
+            resource.Password,resource.Address,resource.District,resource.City,resource.ProfileImage);
     }
 }

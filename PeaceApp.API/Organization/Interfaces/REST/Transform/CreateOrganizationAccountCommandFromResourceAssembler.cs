@@ -7,6 +7,14 @@ public class CreateOrganizationAccountCommandFromResourceAssembler
 {
     public static CreateOrganizationAccountCommand ToCommandFromResource(CreateOrganizationAccountResource resource)
     {
-        return new CreateOrganizationAccountCommand(resource.OrganizationName, resource.Location, resource.Cellphone);  
+        return new CreateOrganizationAccountCommand(
+            resource.Name,
+            resource.Email,
+            resource.Password,
+            resource.ContactNumber,
+            resource.Address,
+            resource.Description,
+            resource.ProfileImage
+            );  
     }
 }

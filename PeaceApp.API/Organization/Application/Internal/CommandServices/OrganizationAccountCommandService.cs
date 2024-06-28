@@ -19,10 +19,10 @@ public class OrganizationAccountCommandService : IOrganizationAccountCommandServ
 
     public async Task<OrganizationAccount> Handle(CreateOrganizationAccountCommand command)
     {
-        var organizationAccount = await _organizationAccountRepository.FindByOrganizationNameAsync(
-            command.OrganizationName);
+        var organizationAccount = await _organizationAccountRepository.FindByOrganizationEmailAsync(
+            command.Email);
         if (organizationAccount != null)
-            throw new Exception("Organization Account with this name  already exisits");
+            throw new Exception("Organization Account with this email already exists");
         organizationAccount = new OrganizationAccount(command);
         await _organizationAccountRepository.AddAsync(organizationAccount);
         await _unitOfWork.CompleteAsync();

@@ -1,3 +1,4 @@
 namespace PeaceApp.API.Organization.Interfaces.REST.Resources;
 
-public record OrganizationAccountResource(int Id, string OrganizationName, string  Location, string Cellphone);
+public record OrganizationAccountResource(int Id, string Name,
+    string Email, string Password, string ContactNumber, string Address, string Description, string ProfileImage);

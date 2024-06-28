@@ -23,7 +23,7 @@ public class OrganizationsAccountController(
             CreateOrganizationAccountCommandFromResourceAssembler.ToCommandFromResource(resource);
         var result = await organizationAccountCommandService.Handle(createOrganizationAccountCommand);
         return CreatedAtAction(nameof(GetOrganizationAccountByOrganizationName),
-            new { organizationName = result.OrganizationName },
+            new { organizationName = result.Name },
             OrganizationAccountResourceFromEntityAssembler.ToResourceFromEntity(result));
     }
 
@@ -32,6 +32,15 @@ public class OrganizationsAccountController(
     {
         var getOrganizationAccountByOrganizationName = new GetOrganizationAccountByOrganizationNameQuery(organizationName);
         var result =await organizationAccountQueryService.Handle(getOrganizationAccountByOrganizationName);
+        var resource = OrganizationAccountResourceFromEntityAssembler.ToResourceFromEntity(result);
+        return Ok(resource);
+    }
+    
+    [HttpGet("email/{email}")]
+    public async Task<ActionResult> GetOrganizationAccountByEmail(string email)
+    {
+        var getOrganizationAccountByEmail = new GetOrganizationAccountByEmailQuery(email);
+        var result =await organizationAccountQueryService.Handle(getOrganizationAccountByEmail);
         var resource = OrganizationAccountResourceFromEntityAssembler.ToResourceFromEntity(result);
         return Ok(resource);
     }

@@ -7,7 +7,15 @@ public  static class OrganizationAccountResourceFromEntityAssembler
 {
     public static OrganizationAccountResource ToResourceFromEntity(OrganizationAccount entity)
     {
-        return new OrganizationAccountResource(entity.Id, entity.OrganizationName, entity.Location,
-            entity.Cellphone);  
+        return new OrganizationAccountResource(
+                entity.Id,
+                entity.Name,
+                entity.Email,
+                entity.Password,
+                entity.ContactNumber,
+                entity.Address,
+                entity.Description,
+                entity.ProfileImage
+            );  
     }
 }

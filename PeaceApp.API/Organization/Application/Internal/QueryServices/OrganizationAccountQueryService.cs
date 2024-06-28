@@ -13,4 +13,9 @@ public class OrganizationAccountQueryService(IOrganizationAccountRepository orga
     {
         return await organizationAccountRepository.FindByOrganizationNameAsync(query.OrganizationName);
     }
+    
+    public async Task<OrganizationAccount> Handle(GetOrganizationAccountByEmailQuery query)
+    {
+        return await organizationAccountRepository.FindByOrganizationEmailAsync(query.Email);
+    }
 }

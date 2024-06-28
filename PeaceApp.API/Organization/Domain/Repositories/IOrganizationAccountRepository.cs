@@ -6,4 +6,5 @@ public interface IOrganizationAccountRepository : IBaseRepository<Model.Aggregat
 {
     //I can add more in the future
     Task<Model.Aggregates.OrganizationAccount> FindByOrganizationNameAsync(string organizationName);
+    Task<Model.Aggregates.OrganizationAccount> FindByOrganizationEmailAsync(string organizationEmail);
 }
